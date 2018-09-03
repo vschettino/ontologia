@@ -96,7 +96,7 @@
 %
 %
 \pagestyle{ruledheader}
-\chapter{Introdu\c{c}\~ao}
+\chapter{Introdu\c{c}\~ao}\label{cha:intro}
 
 O \textit{code review} é considerado uma das principais técnicas para diminuição de defeitos de software \cite{Boehm2001}. Nela, o autor de uma alteração na base de código de um projeto submete tal conteúdo ao crivo de um conjunto de pares técnicos, que irão revisar sua estrutura com base em um lista de regras e convenções previamente definida. Diferentes aspectos relacionados ao autor, ao revisor e ao processo de revisão em si estão diretamente relacionados à eficiência da prática. Autores relatam a diminuição da incidência de \textit{anti-patterns} \cite{Kemerer2009} de acordo com o nível de participação dos envolvidos e cobertura do código revisado \cite{Meneely201437, Morales2015171, Bavota201581}. Reputação \cite{Baysal2013122, Bosu2014} e experiência \cite{Kononenko2015111} do revisor também parecem impactar nos efeitos do \textit{code review}
 
@@ -128,7 +128,7 @@ Assim, o objetivo deste trabalho é discutir como ontologias podem enriquecer um
 
 \textcolor{red}{\hl{-- ORGANIZAÇÃO DO TRABALHO --}}
 
-\chapter{Referencial Teórico}
+\chapter{Referencial Teórico}\label{cha:referencial}
 
 Este capítulo descreve os diferentes pressupostos teóricos necessários para entendimento do processo de recomendação de revisores. O contexto de desenvolvimento distribuído possui diversas variações quanto a processo e ferramentas, que são descritas nas seções seguintes.
 
@@ -169,7 +169,7 @@ As ontologias são utilizadas em diversos contextos e aplicações, geralmente c
 
 uma ontologia é composta por: Definições de classes; Relações e Funções. Se tornou comum para representação de conhecimento na Web Semântica. As especificações da ontologia permitem a utilização de máquinas de inferências para descoberta de novos conhecimentos, antes não explícitos, nas informações disponíveis. Estas máquinas inferem novas propriedades e relacionamentos baseadas em conhecimento explícito \cite{berners2001}
 
-\chapter{Trabalhos Relacionados}
+\chapter{Trabalhos Relacionados}\label{cha:relacionados}
 
 Existem diversos trabalhos que visam recomendar revisores, alguns já citados em seções anteriores deste texto. Para esta seção foram escolhidos trabalhos fundamentais do campo, com atenção a diversidade de abordagens, especialmente no tocante da avaliação e métodos computacionais. O objetivo desta metodologia é oferecer uma visão ampla da área para identificar desafios e boas práticas que devem ser avaliados para proposta de novos métodos.
 
@@ -212,8 +212,15 @@ Search-Based Peer Reviewers Recommendation in Modern Code Review.               
 \label{tab:presentation}
 \end{table}
 
+Alguns dos trabalhos mais recentes da área já valorizam informações relativas a colaboração para recomendar os revisores adequados\cite{ouni2016, zanjani2016}. Por ser uma atividade fundamentalmente colaborativa, a revisão de código depende da capacidade de interação entre os envolvidos, estando vulnerável aos desafios de colaboração que se intensificam no desenvolvimento global de software.
 
-\chapter{Metodologia}
+A principal inovação da proposta aqui descrita é o uso de ontologias para enriquecer a rede colaborativa modelada, aprimorando os métdos de recomendação baseados nela. A utilização de ontolgias para recomendação é uma técnica já explorada em trabalhos anteriores~\cite{middleton2001,middleton2004} e indicada como sugestão para trabalhos futuros~\cite{adomavicius2005}, e por isso é um potencial caminho para otimização dos resultados da recomendação.
+
+\chapter{Proposta}\label{cha:proposta}
+
+Este capítulo descreve \textit{workflow} da proposta de rede colaborativa para recomendação, partindo da e extração, transformação e carga dos dados dos dados até a disponibilização destes através de serviços para execução dos métodos para encontrar os revisores adequados.
+
+\section{Extração dos Dados}
 
 Os dados da análise são extraídos do GitHub através da API\footnote{https://developer.github.com/v3/} disponibilizada para desenvolvedores do mundo todo estenderem as funcionalidades da plataforma e integrar novos produtos que agregem valor ao processo de desenvolvimento. A versão estável para integração foi a v3, que implementa o padrão arquitetural RESTful\cite{fielding2002}. Existe a API em recém lançada v4\footnote{https://developer.github.com/v4/}, que utiliza da especificação GraphQL para exposição dos serviços. Esta não foi utilizada devido a documentação ainda recente e pela preferência ao padrão REST. A figura~\ref{fig:processo_extracao} mostra o pipeline de extração e estruturação dos dados.
 
@@ -284,7 +291,7 @@ De acordo com Sinha et al. \cite{sinha2016}, a maturidade da reprodutibilidade d
 \paragraph{Sistema computacional requerido:} Detalhamento das informações de hardware e software necessários, como por exemplo memória, arquitetura, processador, versão e plataforma. O nível ideal é a disponibilização do experimento em ambiente virtualizado em nuvem, em arquitetura que permita tanto a reprodução "as is" quanto extensão e modificação de parâmetros e dados de entrada. Como todo o pipeline deste projeto está disponibilizado na infraestrutura Docker, a única restrição da máquina do pesquisador é ter o Docker instalado. Informações do hardware utilizado nos experimentos serão disponibilizadas nas próximas seções.
 
 
-\section{Modelo Proposto}
+\section{Modelo de Rede Colaborativa}
 
 O modelo proposto se baseia nos dados de relacionamento entre autores e revisores, mais espeficificamente nas interações entre comentários de revisão e pullrequests. Quanto existe uma interação do tipo, cria-se ou atualiza-se uma aresta entre dois indivíduos. A figura~\ref{fig:ger} ilustra o modelo proposto.
 
@@ -394,7 +401,55 @@ Dentre os principais dados relevantes para o processo de recomendação, estão 
 
 \textit{informações de conhecimento: } Analisar a contribuição dos potenciais revisores em determinadas áreas do conhecimento. Este rankeamento pode ser feito pelas tags do StackOverflow e serem comparadas com as informações semânticas de seu histórico no GitHub, como as labels ou tópicos extraídos do conteúdo dos pullrequests.
 
+Outra forma de integrar as informações presentes nos repositórios, garantindo o alinhamento semântico e a completude destas é através do uso de ontologias de integração~\cite{pinto2001}. Assim é possível modelar consultas e extrair conhecimentos de forma abstrata, onde os conceitos são representações não ambíguas das entidades de cada um dos respositórios~\cite{calvanese2002}
 
+\section{Ontologia para Descoberta de Conhecimento}
+
+Além de alinhar contextos distintos para produção de conhecimento como proposto na seção anterior, as ontologias servem como especificação formal que visa explicitação do informação de maneira não ambígua. Por isso, é possível expor os dados necessários através de serviços padronizados para clientes capazes de navegar entre os diferentes recursos e implementar as funcionalidades de recomendação previstas.
+
+A proposta de ontologia utilizada na consulta pode ser vista na figura~\ref{fig:ontologia}. Os conceitos são semelhantes aos reproduzidos no Modelo de Entendidade Relacionamento (figura~\ref{fig:mer}), acrescido de conhecimento explícito em forma de Object Properties, como mostra a figura~\ref{fig:object_properties}
+
+\begin{figure}[!htbp]
+\centering
+ \includegraphics[height=250]{ontologia}
+ \caption{Ontologia Proposta}\label{fig:ontologia}
+\end{figure}
+
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[height=150]{object_properties}
+ \caption{Object Properties}\label{fig:object_properties}
+\end{figure}
+
+Além dos relacionamentos previstos no modelo relacional, são criadas Object Properties representam interação entre pessoas e conhecimento de especialistas sobre determinado assunto. as propriedades \textit{discussedWith} e \textit{Reviewed} indicam que dois desenvolvedores já trabalham juntos, seja em threads de discussão ou durante o \textit{code review}. Já as propriedades \textit{contributesAbout} e \textit{discussedAbout} indicam relação entre um desenvolvedor e um tópico de conhecimento, representado por determinada \textit{label}. Estas informações podem enriquecer a recomendação. Por exemplo, o número de interação entre determinados desenvolvedores pode ser critério de desempate ou ordenação na hora de recomendar um número finito de potenciais revisores. Além disso, a descoberta de revisores pode ser feita não através da colaboração geral, mas sim com a presença de determniadas \textit{labels}, pois estas entidades podem representar tecnologias (por exemplo python, php), expertises (performance, documentação) e etapas do processo de desenvolvimento (testing, ready for deploy). A reputação de determinado profissional em cada uma destas entidades pode ser utilizada como indicativo da capacidade de colaboração, podendo aumentar a eficência dos métodos de recomendação. Para projetos com tecnologias diferentes, divisão de equipes por especialidades ou mesmo com uma arquitetura modularizada, recomendar valendo-se da expertise em determinadas labels também pode ser um diferencial.
+
+\subsection{Populando a Ontologia}
+
+Como descrito em seções anteriores, os dados são extraídos dos repositórios distribuidos e consolidados em uma base de dados relacional. Este é o ponto central de onde outras transformações são executadas, como a criação da rede colaborativa. Para popular a ontolgia proposta, é necessário acessar este repositório central. A figura~\ref{fig:workflow_ontologia} mostra o processo de extração para disponibilizar uma interface SPARQL para prover as informações necessárias para os serviços de recomendação.
+
+\begin{figure}[!htbp]
+ \centering
+ \includegraphics[width=300]{workflow_ontologia}
+ \caption{Workflow de Extração}\label{fig:workflow_ontologia}
+\end{figure}
+
+
+O D2RQ\footnote{http://d2rq.org/} é uma plataforma que provê uma interface de acesso às bases de dados relacionais como triplas RDF, acessíveis através de uma interface que interpreta consultas SPARQL. A conversão entre os modelos é feita nativamente para tipos mais comuns e baseada na ontologia proposta, e pode ser extendida através do desenvolvimento de classes que implementem o comportamento esperado. A conversão pode ser feita em tempo real ou criando um arquivo TTL (Turtle Triple Language) que solidifica todas as informações necessárias para posterior consulta.
+
+Apesar do poder que as máquinas de inferência possuem, o desemepenho desta abordagem ainda é um fator limitante de sua adoção geral na web semântica \cite{shvaiko2013}. Quando se tratam de grande volumes de dados, os bancos de dados relacionais proveem mais escalabilidade, e por isso abordagens híbridas são aconselhadas~\cite{hepp2008}. Como os projetos opensource encontrados no GitHub possuem centenas de milhares de registros, testes preliminares apontaram pela inviabilidade da inferência através destas tecnologias. Assim, o D2RQ se mostrou como alternativa plausível que permite a especificação de serviços e modelos SPARQL aproveitando o poder da ontologia como linguagem de especificação, permitindo a utilização da infraestrutura relacional que dispõe de maior escalabilidade e desempenho.
+
+\chapter{Conclusão}\label{cha:conclusao}
+
+O \textit{code review} é uma prática estabelecida com efeitos conhecidos e confirmados por vários autores através dos anos. Desde o processo tradicional que nasceu nos anos 70" baseado em um workflow rígido, a técnica se desenvolveu constantemente para o modelo leve e ágil que valoriza mais a troca de conhecimento e a relação entre pessoas.
+
+Estudos recentes mostram o impacto da escolha do revisor correto na eficiência e impacto do processo na qualidade do código e na detecção precoce de defeitos. Isso fez com que diversos autores propossem métodos para recomendar revisores adequados, dado o contexto e o conteúdo de umaa revisão. Os desafios do desenvolvimento global de software potencializam a necessidade desta recomendação, visto a quantidade de informações que influenciam na capacidade do revisor e a dificuldade de agregá-las de forma manual, levando a escolhas tardias ou fundamentalmente ruins.
+
+Trabalhos mais recentes apresentam propostas e métodos de avaliação baseados em informações de colaboração, como atividade, eficiência de revisões passadas e capacidade de interação. Estes resultados motivaram a proposta de novos métodos de recomendação baseados em redes colaborativas e voltados para o desenvolvimento global de software, com suas peculiaridades.
+
+Ontologias podem ser utilizadas prover mais informações e aumentar a eficiência das recomendações, delimitando contextos de atuação e enriquecendo os métodos previamente publicados. Assim, foi proposta uma ontologia que indique relacionamentos entre pessoas e entre pessoas e tópicos de conhecimento.
+
+Como trabalhos futuros, existem diversas aplicações de ontologia nos métodos propostos. É possível sua utilização para integração e alinhamento dos dados de diferentes bases que contém informações sobre desenvolvedores e sua reputação, como o StackOverflow (já explicitado neste trabalho) e ferramentas como o Twitter. Além disso, testes aprofundados e avaliação dos métodos de recomendação conhecidos podem apontar novas aplicações de ontologia com o objetivo de melhorar a qualidade das saídas e a predição de revisores cada vez mais adequados.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \singlespacing
