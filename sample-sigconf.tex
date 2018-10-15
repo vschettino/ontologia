@@ -1,99 +1,122 @@
-\NeedsTeXFormat{LaTeX2e}
-%-----------------------------------------------------------
-\documentclass[a4paper,12pt]{monografia}
-\usepackage[portuguese, colorinlistoftodos, textsize=tiny]{todonotes}
-\usepackage{amsmath,amsthm,amsfonts,amssymb}
-\usepackage[mathcal]{eucal}
-\usepackage{latexsym}
+\documentclass[sigconf]{acmart}
+
+\usepackage{booktabs} % For formal tables
 \usepackage[portuguese]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{setspace}
-\usepackage{tabularx}
-%\usepackage{natbib}
-\usepackage{bm}
-\usepackage[portuguese,algoruled,longend, linesnumbered]{algorithm2e}
-\usepackage{listings}
-\usepackage{graphicx}
-\usepackage{hyperref}
-\hypersetup{colorlinks,
-   debug=false,
-   linkcolor=black,  %%% cor do tableofcontents, \ref, \footnote, etc
-   citecolor=black,  %%% cor do \cite
-   urlcolor=black,   %%% cor do \url e \href
-   bookmarksopen=true,
-}
-\usepackage[alf,bibjustif]{abntex2cite}
 
-\newcounter{todocounter}
-\newcommand{\comment}[2][]
-{\stepcounter{todocounter}\todo[caption={\thetodocounter: #2}, #1]
-{\begin{spacing}{1}\thetodocounter: #2\end{spacing}}}
-\reversemarginpar
-\setlength{\marginparwidth}{2.5cm}
-\lstloadlanguages{C}
-%-----------------------------------------------------------
-%-----------------------------------------------------------
-\theoremstyle{plain}
-\newtheorem{theorem}{Teorema}[section]
-\newtheorem{axiom}{Axioma}[section]
-\newtheorem{corollary}{Corol\'ario}[section]
-\newtheorem{lemma}{Lema}[section]
-\newtheorem{proposition}{Proposi\c{c}\~ao}[section]
-%-----------------------------------------------------------
-\theoremstyle{definition}
-\newtheorem{definition}{Defini\c{c}\~ao}[section]
-\newtheorem{example}{Exemplo}[section]
-%-----------------------------------------------------------
-\theoremstyle{remark}
-\newtheorem{remark}{Observa\c{c}\~ao}[section]
-%-----------------------------------------------------------
-%-----------------------------------------------------------
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\K}{\mathbb{K}}
-\newcommand{\I}{\mathbb{I}}
-\newcommand{\id}{\mathbf{1}}
-\newcommand{\U}{\mathcal{U}}
-\newcommand{\V}{{\cal V}}
-%-----------------------------------------------------------
-\def\ind{\hbox{ ind }}
-%-----------------------------------------------------------
-\include{hifenizacao}
+% Copyright
+%\setcopyright{none}
+%\setcopyright{acmcopyright}
+%\setcopyright{acmlicensed}
+\setcopyright{rightsretained}
+%\setcopyright{usgov}
+%\setcopyright{usgovmixed}
+%\setcopyright{cagov}
+%\setcopyright{cagovmixed}
 
+
+% DOI
+\acmDOI{xxxxxxx}
+
+% ISBN
+\acmISBN{xxxxxx}
+
+%Conference
+\acmConference[SBSI'19]{Simpósio Brasileiro de Sistemas de Informação}{Maio 2019}{Aracaju/SE - Brasil}
+\acmYear{2019}
+\copyrightyear{2019}
+
+
+\acmArticle{4}
+\acmPrice{15.00}
 
 
 \begin{document}
-\include{pretexto}
+\title{Utilizando Ontologias para apoiar a recomendação de revisores de código}
+
+\author{Vinicius J. Schettino}
+\affiliation{%
+\institution{Universidade Federal de Juiz de Fora}
+  \streetaddress{}
+  \city{Juiz de Fora}
+  \state{Minas Gerais}
+}
+\email{vinicius.schettino@ice.ufjf.br}
+
+\author{Regina Braga}
+\affiliation{%
+  \institution{Universidade Federal de Juiz de Fora}
+  \streetaddress{}
+  \city{Juiz de Fora}
+  \state{Minas Gerais}
+}\email{regina.braga@ufjf.edu.br}
+
+\author{Marco Antônio P. Araújo}
+\affiliation{%
+  \institution{Universidade Federal de Juiz de Fora}
+  \streetaddress{}
+  \city{Juiz de Fora}
+  \state{Minas Gerais}
+}\email{marco.araujo@ufjf.edu.br}
+
+\author{Victor Ströele}
+\affiliation{%
+  \institution{Universidade Federal de Juiz de Fora}
+  \streetaddress{}
+  \city{Juiz de Fora}
+  \state{Minas Gerais}
+}\email{victor.stroele@ufjf.edu.br}
+
+% The default list of authors is too long for headers.
+\renewcommand{\shortauthors}{Schettino et al.}
 
 
-
-
-
-\resumo{Resumo}
+\begin{abstract}
 A prática de \textit{code review} está amplamente associada a qualidade de código e detecção precoce de defeitos de software. Intrinsecamente colaborativo, a eficiência do processo depende também do perfil histórico do revisor e da natureza do código em avaliação. Em contexto de desenvolvimento distribuído, consolidar todas as informações que ajudam a encontrar o revisor adequado se torna ainda mais difícil, e a importância da recomendação automatizada ganha mais força. Dentre outros desafios, a arquitetura e habilidades necessárias entre projetos são distintas, atrapalhando a troca de experiências e auxílios entre diferentes grupos de trabalho. Para auxiliar no processo de escolha do revisor, uma ontologia de alinhamento é proposta, de forma a  alinhar dos tópicos de conhecimento entre projetos distintos. Assim é possível encontrar especialistas que possam ser revisores adequados em diferentes grupos de tabalho. Este trabalho apresenta a  arquitetura responsável pela extração dos dados e aplicação da ontologia proposta, exemplificado por um caso de uso envolvendo projetos OpenSource conhecidos de uma mesma organização.
+\end{abstract}
 
-
-%----Sum\'ario, lista de figura e de tabela ------------
- \tableofcontents \thispagestyle{empty} \listoffigures
-\thispagestyle{empty} \listoftables \thispagestyle{empty}
-
-
-
-\end{tabular}  \thispagestyle{empty}
-%---------------------
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
-%--------------In\'icio do Conte\'udo---------------------------
+% The code below should be generated by the tool at
+% http://dl.acm.org/ccs.cfm
+% Please copy and paste the code instead of the example below.
 %
-%
-\pagestyle{ruledheader}
-\chapter{Introdu\c{c}\~ao}\label{cha:intro}
+\begin{CCSXML}
+<ccs2012>
+ <concept>
+  <concept_id>10010520.10010553.10010562</concept_id>
+  <concept_desc>Computer systems organization~Embedded systems</concept_desc>
+  <concept_significance>500</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010575.10010755</concept_id>
+  <concept_desc>Computer systems organization~Redundancy</concept_desc>
+  <concept_significance>300</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10010520.10010553.10010554</concept_id>
+  <concept_desc>Computer systems organization~Robotics</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+ <concept>
+  <concept_id>10003033.10003083.10003095</concept_id>
+  <concept_desc>Networks~Network reliability</concept_desc>
+  <concept_significance>100</concept_significance>
+ </concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computer systems organization~Embedded systems}
+\ccsdesc[300]{Computer systems organization~Redundancy}
+\ccsdesc{Computer systems organization~Robotics}
+\ccsdesc[100]{Networks~Network reliability}
+
+
+\keywords{ACM proceedings, \LaTeX, text tagging}
+
+
+\maketitle
+
+\section{Introduction}
 
 O \textit{code review} é considerado uma das principais técnicas para diminuição de defeitos de software \cite{Boehm2001}. Nela, o autor de uma alteração na base de código de um projeto submete tal conteúdo ao crivo de um conjunto de pares técnicos, que irão revisar sua estrutura com base em um lista de regras e convenções previamente definida. Diferentes aspectos relacionados ao autor, ao revisor e ao processo de revisão em si estão diretamente relacionados à eficiência da prática. Autores relatam a diminuição da incidência de \textit{anti-patterns} \cite{Kemerer2009} de acordo com o nível de participação dos envolvidos e cobertura do código revisado \cite{Meneely201437, Morales2015171, Bavota201581}. Reputação \cite{Baysal2013122, Bosu2014} e experiência \cite{Kononenko2015111} do revisor também parecem impactar nos efeitos do \textit{code review}
 
@@ -133,26 +156,41 @@ Labels são \textit{tags} atribuídas aos pullrequests, com diversos objetivos. 
 
 Além deste capítulo, este trabalho é composto de outras 4 partes. A seção~\ref{cha:referencial} traz as fundamentações e conceitos necessários para a compreensão dos objetivos, motivação e métodos aplicados. O capítulo~\ref{cha:relacionados} elucida os principais trabalhos congêneres, tanto no tocante da recomendação como das ontologias. O \textit{worflow} de extração, a ontologia proposta e as possibilidades de extensão dos trabalhos anteriores são evidenciados no capítulo~\ref{cha:proposta}. Por fim, a conclusão da pesquisa é descrita no capítulo~\ref{cha:conclusao}
 
-\chapter{Referencial Teórico}\label{cha:referencial}
+\begin{table}
+  \caption{Tabela do Template (para comparar)}
+  \label{tab:freq}
+  \begin{tabular}{ccl}
+    \toprule
+    Non-English or Math&Frequency&Comments\\
+    \midrule
+    uai & 1 in 1,000 &  At oprette }\\
+    $\pi$ & 1 in 5& Common in math\\
+    \$ & 4 in 5 & Used in business\\
+    $\Psi^2_1$ & 1 in 40,000& Unexplained usage\\
+  \bottomrule
+\end{tabular}
+\end{table}
+
+\section{Referencial Teórico}\label{cha:referencial}
 
 Este capítulo descreve os diferentes pressupostos teóricos necessários para entendimento do processo de recomendação de revisores. O contexto de desenvolvimento distribuído possui diversas variações quanto a processo e ferramentas, que são descritas nas seções seguintes.
 
-\section{\textit{Code review}}\label{sec:code_review}
+\subsection{\textit{Code review}}\label{sec:code_review}
   O \textit{code review} é uma prática consolidada e difundida em diversas organizações, contemplando diferentes portes e segmentos de mercado. A técnica constitui da análise técnica de uma mudança a ser submetida à base principal de código (repositório-mestre) por parte de um revisor técnico, tendo como base uma lista de diretrizes e padrões a serem observados. As nuances do processo variam em cada contexto levando em consideração, por exemplo, tolerância a defeitos, modelo de desenvolvimento e os objetivos almejados.
 
-\subsection{Relevância}\label{sec:relevancia}
+\subsubsection{Relevância}\label{sec:relevancia}
   O \textit{code review} está associada diretamente à detecção precoce de defeitos em produtos de software \cite{schettino2014,Kemerer2009}, sendo reconhecida como uma das principais técnicas com este fim \cite{Boehm2001}. Mais especificamente, é relatada maior eficiência quanto aos defeitos não-funcionais, enquanto os defeitos funcionais são menos afetados no processo \cite{Beller2014202}. Outros autores reportam a diminuição de defeitos através de estudos de caso \cite{McIntosh2014192,Bavota201581,Morales2015171}.
 
-\subsection{Histórico}\label{sec:historico}
+\subsubsection{Histórico}\label{sec:historico}
   A atividade de revisão remonta da décade de 80 \cite{Fagan1976}, e desde então vem evoluindo para suportar interações mais rápidas e constantes, com uso de ferramentas computacionais e práticas ágeis. O Modern Code Review (MCR) surge em sinergia com os modelos ágeis e distribuídos de desenvolvimento, valorizando mais a comunicação e troca de experiências entre autor e revisor \cite{Bacchelli2013}.
 
-\section{Pull Based Method}\label{sec:pull_based}
+\subsection{Pull Based Method}\label{sec:pull_based}
   O conceito de \textit{branches} é a base para sistemas de controle de versão descentralizados, como o  Git\footnote{https://git-scm.com/} e o Mercurial\footnote{https://www.mercurial-scm.org/}. Com as \textit{branches} é possível desenvolver paralelamente, submetendo e mesclando as alterações no código em momentos oportunos. Esta característica é interessante para o DDS, uma vez que o isolamento e a atomicidade do trabalho de cada um até o momento de submissão é fundamental para a coordenação dos esforços \cite{barr2012}.
 
   Estas tecnologias permitiram o surgimento de um paradigma de desenvolvimento baseado em pulls, ou \textit{pull-based method} \cite{gousios2014}. O processo de revisão de código evolui neste novo paradigma, servindo como um \textit{gateway} de qualidade que busca garantir que apenas alterações aderentes aos padrões de qualidade do projeto serão incorporados à codebase principal \cite{gousios2015}. A figura 1 ilustra tal modelo de trabalho instanciado no GitHub\footnote{https://github.com}, principal expoente que oferece este paradigma. Nele é representado um modelo comum em desenvolvimento OpenSource \cite{6385140}, onde há um \textit{core team} responsável por revisar os \textit{pulls} de seus colegas e da comunidade no geral. Neste modelo, a mudança chega à codebase principal somente se houver o aval de um membro do \textit{core team}.
 
    \begin{figure}[!htbp]
-    \includegraphics[width=\textwidth]{pull-request-flow}\label{fig:pull-request-flow}
+    \includegraphics[width=\columnwidth]{pull-request-flow}\label{fig:pull-request-flow}
     \caption{Pull Request Process \cite{gousios2014}}
   \end{figure}
 
@@ -160,7 +198,7 @@ Este capítulo descreve os diferentes pressupostos teóricos necessários para e
 
   Os membros do core também têm suas \textit{branches} revisadas por um processo análogo \cite{6385140,Bosu2014}. A principal diferença é que não há necessidade do \texit{fork}, já que eles tem as permissões necessárias para criar uma nova \textit{branch} no projeto-alvo.
 
-\section{Ontologia}
+\subsection{Ontologia}
 
 Ontologia é a definição de um vocabulário ou linguagem comum para representar conhecimentos \cite{guarino1998}. Para computação, pode ser vista como uma especificação formal, explícita e não ambígua de um conceito compartilhado por diferentes agentes.
 
@@ -174,7 +212,8 @@ As ontologias são utilizadas em diversos contextos e aplicações, geralmente c
 
 Uma ontologia é composta por: Definições de classes; Relações e Funções. Se tornaram comuns para representação de conhecimento na Web Semântica \cite{berners2001}. As especificações da ontologia permitem a utilização de máquinas de inferências para descoberta de novos conhecimentos, antes não explícitos, nas informações disponíveis. Estas máquinas inferem propriedades e relacionamentos baseadas em conhecimento explícito \cite{berners2001}
 
-\chapter{Trabalhos Relacionados}\label{cha:relacionados}
+
+\section{Trabalhos Relacionados}\label{cha:relacionados}
 
 Existem diversos trabalhos que visam recomendar revisores, alguns já citados em seções anteriores deste texto. Para esta seção foram escolhidos trabalhos fundamentais do campo, com atenção a diversidade de abordagens, especialmente no tocante da avaliação e métodos computacionais. O objetivo desta metodologia é oferecer uma visão ampla da área para identificar desafios e boas práticas que devem ser avaliados para proposta de novos métodos.
 
@@ -196,41 +235,21 @@ RevRec \cite{ouni2016} foca na expertise do desenvolvedor e analisa também as o
 Além disso, eles hipotetizam que é comum que autores busquem pares de revisão com os quais já trabalharam anteriormente para evitar conflitos. Por exemplo, evitam que criticas ou rejeições sejam interpretados como ofensas. Além de utilizar informações de atividade e utilidade do revisor em iterações passadas, esta abordagem busca analisar revisões semanticamente parecidas para recomendar.
 
 
-Além de relevantes para o entendimento geral da área, os trabalhos selecionados também foram avaliados de acordo com a relevância do veículo de publicação e o fator de impacto QUALIS, como mostra a tabela~\ref{tab:presentation}. Os fatores constantes são oriundos da plataforma oficial da CAPES\footnote{https://sucupira.capes.gov.br/sucupira/public/consultas/coleta/veiculoPublicacaoQualis/listaConsultaGeralPeriodicos.jsf}
-
-
-\begin{table}[!h]
-\centering
-\begin{tabularx}{\columnwidth}{|X|c|c|c|}
-\toprule
-\hline
-Título                                                                                                                        & Ano & Fonte                               & Qualis &  \\
-\hline
-Reducing human effort and improving quality in peer code reviews using automatic static analysis and reviewer recommendation & 2013 & ICSE                                      & A1            &  \\
-CoRReCT: code reviewer recommendation in GitHub based on cross-project and technology experience                             & 2016 & ICSE                                      & A1            &  \\
-Automatically recommending peer reviewers in modern code review                                                              & 2016 & IEEE Transactions on Software Engineering & A1            &  \\
-Search-Based Peer Reviewers Recommendation in Modern Code Review.                                                            & 2017 & ICSME                                  & A1            &  \\ \bottomrule
-\hline
-
-\end{tabularx}%
-\caption{Chosen Papers Introduction}
-\label{tab:presentation}
-\end{table}
-
 Alguns dos trabalhos mais recentes da área levam em consideração informações tidas como relacionadas à colaboração para recomendar os revisores adequados\cite{ouni2016, zanjani2016}. Por ser uma atividade fundamentalmente colaborativa, a revisão de código depende da capacidade de interação entre os envolvidos, estando vulnerável aos desafios de colaboração que se intensificam no desenvolvimento global de software.
 
 A principal inovação da proposta aqui descrita é o uso de ontologias para recomendar especialistas entre projetos distintos. A utilização de ontolgias para recomendação é uma técnica já explorada em trabalhos anteriores~\cite{middleton2001,middleton2004} e indicada como sugestão para trabalhos futuros~\cite{adomavicius2005}, e por isso é um potencial caminho para otimização dos resultados da recomendação.
 
-\chapter{Proposta}\label{cha:proposta}
+
+\section{Proposta}\label{cha:proposta}
 
 Este capítulo descreve \textit{workflow} da proposta de rede colaborativa para recomendação, partindo da e extração, transformação e carga dos dados dos dados até a disponibilização destes através de serviços para execução dos métodos para encontrar os revisores adequados.
 
-\section{Extração dos Dados}
+\subsection{Extração dos Dados}
 
 Os dados da análise são extraídos do GitHub através da API\footnote{https://developer.github.com/v3/} disponibilizada para desenvolvedores do mundo todo estenderem as funcionalidades da plataforma e integrar novos produtos que agregem valor ao processo de desenvolvimento. A versão estável para integração foi a v3, que implementa o padrão arquitetural RESTful\cite{fielding2002}. Existe a API em recém lançada v4\footnote{https://developer.github.com/v4/}, que utiliza da especificação GraphQL para exposição dos serviços. Esta não foi utilizada devido a documentação ainda recente e pela preferência ao padrão REST. A figura~\ref{fig:processo_extracao} mostra o pipeline de extração e estruturação dos dados.
 
 \begin{figure}[!htbp]
- \includegraphics[width=\textwidth]{processo_extracao}
+ \includegraphics[width=\columnwidth]{processo_extracao}
  \caption{Processo de extração dos dados}\label{fig:processo_extracao}
 \end{figure}
 
@@ -243,10 +262,10 @@ Os dados extraídos são estruturados em um esquema relacional, mais especificam
  \caption{Tabela de Reactions Disponíveis}\label{fig:reactions}
 \end{figure}
 
-\begin{figure}[!htbp]
+\begin{figure*}[!htbp]
  \includegraphics[width=\textwidth]{mer}
  \caption{Modelo Entidade Relacionamento}\label{fig:mer}
-\end{figure}
+\end{figure*}
 
 Os dados são carregados para o banco de dados baseado em grafo (GDBMS), com as informações relevantes nos nós e arestas. Os dados de interesse são os autores e revisores, bem como o relacionamento entre eles. Detalhes da modelagem da rede colaborativa serão cobertos em uma seção específica. A tecnologia escolhida aqui é o Neo4j, banco de dados orientado a grafo mais popular de sua família\footnote{https://db-engines.com/en/ranking}. É a partir dele que as análises são executadas e vizualizadas utilizando o Gephi\footnote{https://gephi.org/}.
 
@@ -262,12 +281,12 @@ O algortimo de extração dos dados foi projetado com uma série de cuidados par
 
 
 
-\section{Aspectos de Reprodutibilidade}
+\subsection{Aspectos de Reprodutibilidade}
 
 Cada uma das tecnologias apresentadas é encapsulada através da tecnologia de virtualização Docker. esta abordagem é uma resposta às iniciativas de reprodutibilidade na ciência, buscando maior transparência, confiabiliade e possibilidade de extensão nos experimentos \cite{freire2012}. Os três componentes (banco de dados relacional, orientado a grafo e os scripts de extração, transformação e carga) são encapsulados em contâiners distintos, como mostra a figura~\ref{fig:docker-model} Estes são orquestrados através do docker-compose, que configura os parâmetros e acessos necessários para o funcionamento do sistema sem que o usuário precise realizar nenhuma ação extra.
 
 \begin{figure}[!htbp]
- \includegraphics[width=\textwidth]{docker-model}
+ \includegraphics[width=\columnwidth]{docker-model}
  \caption{Modelo de contâiners}\label{fig:docker-model}
 \end{figure}
 
@@ -276,13 +295,13 @@ Com um conjunto grande de dependências, tecnologias e minúncias que estão env
 
 De acordo com Sinha et al. \cite{sinha2016}, a maturidade da reprodutibilidade de um experimento científico computacional pode ser medido de acordo o nível dos seguintes aspectos que foram trabalhados em sua disponibilização. A figura~\ref{fig:espectro_reprodutibilidade} mostra o espectro de reprodutibilidade, que encara esta característica como um constante trabalho de evolução não binário, podendo uma pesquisa se tornar mais ou menos reprodutível ao se utilizar determinadas técnicas. A figura~\ref{fig:escala_reprodutibilidade} mostra o detalhamento de cada aspecto que contribui para que esta característica seja evidenciada:
 
-\begin{figure}[!htbp]
+\begin{figure*}[!htbp]
  \includegraphics[width=\textwidth]{espectro_reprodutibilidade}
  \caption{Espectro de Reprodutibilidade}\label{fig:espectro_reprodutibilidade}
-\end{figure}
+\end{figure*}
 
 \begin{figure}[!htbp]
- \includegraphics[width=\textwidth]{escala_reprodutibilidade}
+ \includegraphics[width=\columnwidth]{escala_reprodutibilidade}
  \caption{Escala de Maturidade de Reprodutibilidade}\label{fig:escala_reprodutibilidade}
 \end{figure}
 
@@ -296,12 +315,12 @@ De acordo com Sinha et al. \cite{sinha2016}, a maturidade da reprodutibilidade d
 \paragraph{Sistema computacional requerido:} Detalhamento das informações de hardware e software necessários, como por exemplo memória, arquitetura, processador, versão e plataforma. O nível ideal é a disponibilização do experimento em ambiente virtualizado em nuvem, em arquitetura que permita tanto a reprodução "as is" quanto extensão e modificação de parâmetros e dados de entrada. Como todo o pipeline deste projeto está disponibilizado na infraestrutura Docker, a única restrição da máquina do pesquisador é ter o Docker instalado. Informações do hardware utilizado nos experimentos serão disponibilizadas nas próximas seções.
 
 
-\section{Modelo de Rede Colaborativa}
+\subsection{Modelo de Rede Colaborativa}
 
 O modelo proposto se baseia nos dados de relacionamento entre autores e revisores, mais espeficificamente nas interações entre comentários de revisão e pullrequests. Quanto existe uma interação do tipo, cria-se ou atualiza-se uma aresta entre dois indivíduos. A figura~\ref{fig:ger} ilustra o modelo proposto.
 
 \begin{figure}[!htbp]
- \includegraphics[width=\textwidth]{ger}
+ \includegraphics[width=\columnwidth]{ger}
  \caption{Modelo da Rede Colaborativa}\label{fig:ger}
 \end{figure}
 
@@ -326,7 +345,7 @@ Este valor é utilizado para análises preliminares, por englobar um cenário ge
 
 
 
-\section{Escolha dos repositórios de dados}
+\subsection{Escolha dos repositórios de dados}
 
 Para avaliar as diferentes propriedades das redes colaborativas propostas, é necessário definir um conjunto de dados inseridos no contexto de estudo. As principais características buscadas foram:
 
@@ -338,7 +357,8 @@ Para avaliar as diferentes propriedades das redes colaborativas propostas, é ne
 
 A tabela~\ref{tab:repos} ilustra os projetos escolhidos e informações de contexto e tamanho.
 
-\begin{table}[!h]
+\begin{table*}[!h]
+
 \centering
 \resizebox{\textwidth}{!}{%
 \begin{tabular}{@{}l|l|l|l|l|l|l@{}}
@@ -352,9 +372,9 @@ Symfony    & PHP                 & 1.297     & 18.381  & 1.692           & 17.47
 }
 \caption{Descrição dos Respositórios Selecionados}
 \label{tab:repos}
-\end{table}
+\end{table*}
 
-\section{Integração de repositórios de dados}\label{sec:integracao}
+\subsection{Integração de repositórios de dados}\label{sec:integracao}
 
 Apesar das informações encontradas no GitHub, é possível refinar métodos de agrupamento e recomendação utilizando dados oriundos de outras fontes. Esta seção descreve a proposta de integração entre diferentes banco de dados para extrair informações relevantes para o modelo de rede colaborativa utilizado.
 
@@ -397,7 +417,7 @@ Assim, o modelo proposto extende a abordagem apresentada na seção 2, adicionan
 
 
 \begin{figure}[!htbp]
- \includegraphics[width=\textwidth]{processo_extracao_stackoverflow}
+ \includegraphics[width=\columnwidth]{processo_extracao_stackoverflow}
  \caption{Processo de Extração com StackOverflow}\label{fig:processo_extracao_stackoverflow}
 \end{figure}
 
@@ -411,7 +431,7 @@ Dentre os principais dados relevantes para o processo de recomendação, estão 
 
 Outra forma de integrar as informações presentes nos repositórios, garantindo o alinhamento semântico e a completude destas é através do uso de ontologias de integração~\cite{pinto2001}. Assim é possível modelar consultas e extrair conhecimentos de forma abstrata, onde os conceitos são representações não ambíguas das entidades de cada um dos respositórios~\cite{calvanese2002}
 
-\section{Recomendando Especialistas Entre Projetos}
+\subsection{Recomendando Especialistas Entre Projetos}
 
 Especialistas de um projeto podem ser detectados de diversas formas. Analisando a atividade recente, por exemplo, é possível encontrar os desenvolvedores responsáveis pelas principais contribuições. Estas contribuições podem ser revisões, modificações no código, documentação e tradução dos artefatos.
 
@@ -419,13 +439,13 @@ Contudo, o intercâmbio destes especialistas entre projetos distintos é um desa
 
 Para atacar esta barreira, este trabalho propõe o uso de ontologias para alinhar as tags de diferentes projetos. O objetivo é que desenvolvedores conceituados dos projetos alvos do alinhamento tenham uma infraestrutura para documentar e expressar a relação entre as diversas labels dos projetos. Assim, é possível que especialistas encontrados em determinado projeto possam ser recomendados como especialsitas em outros projetos, de acordo com a equivalência das labels envolvidas.
 
-\subsection{Ontologia Proposta}
+\subsubsection{Ontologia Proposta}
 
 A ontologia proposta pode ser visualizada na figura~\ref{fig:ontologia}. Apenas duas entidades são criadas, \textit{Project} e \textit{Label}. Entre elas uma Object Property \textit{owns} que denota que determinada label originalmente é originária de determinado projeto.
 
 \begin{figure}[!htbp]
 \centering
- \includegraphics[width=\textwidth/2]{ontologia}
+ \includegraphics[width=\columnwidth]{ontologia}
  \caption{Visualização da Ontologia Proposta}\label{fig:ontologia}
 \end{figure}
 
@@ -441,13 +461,13 @@ Através desta ontologia, é possível expressar os diferentes tipos de equival�
 
 As próximas subseções mostram como a ontologia proposta pode ser populada e um estudo de caso para averiguar a utilização prática dos métodos descritos.
 
-\subsection{Populando a Ontologia}
+\subsubsection{Populando a Ontologia}
 
 Como descrito em seções anteriores, os dados são extraídos dos repositórios distribuidos e consolidados em uma base de dados relacional. Este é o ponto central de onde outras transformações são executadas, como a criação da rede colaborativa. Para popular a ontolgia proposta, é necessário acessar este repositório central. A figura~\ref{fig:workflow_ontologia} mostra o processo de extração para disponibilizar uma interface SPARQL para prover as informações necessárias para os serviços de recomendação.
 
 \begin{figure}[!htbp]
  \centering
- \includegraphics[width=300]{workflow_ontologia}
+ \includegraphics[width=\columnwidth]{workflow_ontologia}
  \caption{Workflow de Extração}\label{fig:workflow_ontologia}
 \end{figure}
 
@@ -483,7 +503,7 @@ O D2RQ\footnote{http://d2rq.org/} é uma plataforma que provê uma interface de 
 Apesar do poder que as máquinas de inferência possuem, o desemepenho desta abordagem ainda é um fator limitante de sua adoção geral na web semântica \cite{shvaiko2013}. Quando se tratam de grande volumes de dados, os bancos de dados relacionais proveem mais escalabilidade, e por isso abordagens híbridas são aconselhadas~\cite{hepp2008}. Como os projetos opensource encontrados no GitHub possuem centenas de milhares de registros, testes preliminares apontaram pela inviabilidade da inferência através destas tecnologias. Assim, o D2RQ se mostrou como alternativa plausível que permite a especificação de serviços e modelos SPARQL aproveitando o poder da ontologia como linguagem de especificação, permitindo a utilização da infraestrutura relacional que dispõe de maior escalabilidade e desempenho.
 
 
-\subsection{Avaliação da Ontologia Proposta}
+\subsubsection{Avaliação da Ontologia Proposta}
 
 Para uma avaliação preliminar da estrutura proposta, foi realizado um estudo de caso com dados reais de um projeto de relevância no GitHub. Buscando por repositórios com quantidades razoáveis de dados, utilizamos o top-5 oficial da plataforma para projetos mais revisados\footnote{https://octoverse.github.com/}, selecionado aquele com mais estrelas. Esta funcionalidade do GitHub pode ser utilizada como medida para o tamanho da comunidade passiva de um projeto\cite{sheoran2014}. Assim, este critério nos levou a escolher o \textbf{Node.js}\footnote{https://github.com/nodejs/node}, uma popular engine JavaScript especialmente utilizada para aplicações \textit{server-side} de alta vazão (I/O).
 
@@ -497,8 +517,7 @@ Já entre Node.js e nodejs/build, houve alinhamento direto entre ``tsc-review'',
 
 Com este estudo de caso foi possível observar que algumas equivalências automatizadas competem a tópicos muito generalistas, onde um especialista de determinado projeto não parece ter competência explícita para o ser em outro. Contudo, diversas equivalências parecem ser relevantes para os projetos selecionados, e por isso podem expressar relacionamentos que apoiam o processo de alinhamento manual. Estudos de caso posteriores podem ajudar a investigar se os especialistas têm performance equiparável quando contribuindo em outros projetos.
 
-
-\chapter{Conclusão}\label{cha:conclusao}
+\section{Conclusão}\label{cha:conclusao}
 
 O \textit{code review} é uma prática estabelecida com efeitos conhecidos e confirmados por vários autores através dos anos. Desde o processo tradicional que nasceu nos anos 70" baseado em um workflow rígido, a técnica se desenvolveu constantemente para o modelo leve e ágil que valoriza mais a troca de conhecimento e a relação entre pessoas.
 
@@ -510,11 +529,7 @@ Para expansão dos métodos já avaliados, especialistas podem ser recomendados 
 
 Como trabalhos futuros, existem diversas aplicações de ontologia nos métodos propostos. É possível sua utilização para integração e alinhamento dos dados de diferentes bases que contém informações sobre desenvolvedores e sua reputação, como o StackOverflow (já explicitado neste trabalho) e ferramentas como o Twitter. Além disso, testes aprofundados e avaliação dos métodos de recomendação conhecidos podem apontar novas aplicações de ontologia com o objetivo de melhorar a qualidade das saídas e a predição de revisores cada vez mais adequados.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\singlespacing
-\bibliographystyle{abntex2-alf}
+\bibliographystyle{ACM-Reference-Format}
 \bibliography{../bibrefs/refs}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \end{document}
